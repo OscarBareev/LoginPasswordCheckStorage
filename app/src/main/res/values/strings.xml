@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LoginPassword</string>
+    <string name="RegistrationTxt">Registration</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="addData">Заполните формы ввода!</string>
+    <string name="regOk">Вы зарегестрировались</string>
+    <string name="AllIsOK">Логин и пароль верны</string>
+    <string name="wrongData">Неверный логин или пароль</string>
+</resources>
