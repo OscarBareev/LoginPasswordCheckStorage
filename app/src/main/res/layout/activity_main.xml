@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/login"
@@ -40,11 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:text="@string/login"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="8dp" />
 
     <Button
         android:id="@+id/RegistrationBtn"
@@ -55,6 +55,21 @@
         android:text="@string/RegistrationTxt"
         app:layout_constraintTop_toBottomOf="@+id/LoginBtn"
         tools:layout_editor_absoluteX="86dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/keepText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RegistrationBtn"
+        app:layout_constraintVertical_bias="0.025"
+        android:layout_marginLeft="8dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

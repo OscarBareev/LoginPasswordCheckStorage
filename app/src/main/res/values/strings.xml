@@ -7,4 +7,5 @@
     <string name="regOk">Вы зарегестрировались</string>
     <string name="AllIsOK">Логин и пароль верны</string>
     <string name="wrongData">Неверный логин или пароль</string>
+    <string name="keepText">Хранить логин во внешнем хранилище</string>
 </resources>
