@@ -29,8 +29,8 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
 
-    private final String FILE_NAME = "file.txt";
-    private final String PREF_KEY = "prefKey";
+    private final static String FILE_NAME = "file.txt";
+    private final static String PREF_KEY = "prefKey";
 
     EditText loginForm;
     EditText passwordForm;
@@ -66,17 +66,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (checkBox.isChecked()) {
-                    checkEditor.putBoolean(PREF_KEY, true);
-                } else {
-                    checkEditor.putBoolean(PREF_KEY, false);
-                }
-                checkEditor.apply();
-            }
-        });
+        checkBox.setOnCheckedChangeListener((compoundButton, checked) ->
+                checkEditor.putBoolean(PREF_KEY, checked).apply());
 
 
         loginBtn.setOnClickListener(myButtonClickListener);
@@ -85,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     View.OnClickListener myButtonClickListener = new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onClick(View view) {
 
@@ -123,13 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void writeFile(String content) {
-        try {
+        try (FileOutputStream outputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
+             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+             BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)) {
 
-            FileOutputStream outputStream = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-            BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
             bufferedWriter.write(content);
-            bufferedWriter.close();
             Toast.makeText(MainActivity.this,
                     R.string.regOk, Toast.LENGTH_SHORT).show();
 
@@ -145,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void readFile(String content) {
 
-        try {
-            InputStreamReader inputStreamReader = new InputStreamReader(openFileInput(FILE_NAME));
-            BufferedReader reader = new BufferedReader(inputStreamReader);
+        try (InputStreamReader inputStreamReader = new InputStreamReader(openFileInput(FILE_NAME));
+             BufferedReader reader = new BufferedReader(inputStreamReader)) {
+
             String line = reader.readLine();
             StringBuilder sb = new StringBuilder();
 
@@ -177,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void writeExternalFile(String content) {
         File dataFile = new File(getApplicationContext().getExternalFilesDir(null), FILE_NAME);
+        dataFile.delete();
         try (FileWriter dataWriter = new FileWriter(dataFile, true)) {
             dataWriter.append(content);
             Toast.makeText(MainActivity.this,
@@ -190,7 +178,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void readExternalFile(String content) {
         File dataFile = new File(getApplicationContext().getExternalFilesDir(null), FILE_NAME);
 
